@@ -171,6 +171,17 @@ class ForecastIOConditions{
     return $this->raw_data->summary;
     
   }
+
+  /**
+   * Get the icon of the conditions
+   * 
+   * @return String
+   */
+  function getIcon() {
+    
+    return $this->raw_data->icon;
+    
+  }
   
   /**
    * Get the time, when $format not set timestamp else formatted time
