@@ -24,7 +24,7 @@ class ForecastIO{
   
   private function requestData($latitude, $longitude) {
     
-    $request_url = self::API_ENDPOINT  . $this->api_key . '/' . $latitude . ',' . $longitude.'?units=si';
+    $request_url = self::API_ENDPOINT  . $this->api_key . '/' . $latitude . ',' . $longitude.'?units=auto';
     
     $content = file_get_contents($request_url);
     
