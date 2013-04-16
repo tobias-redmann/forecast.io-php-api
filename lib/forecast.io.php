@@ -24,7 +24,7 @@ class ForecastIO{
   
   private function requestData($latitude, $longitude) {
     
-    $request_url = self::API_ENDPOINT  . $this->api_key . '/' . $latitude . ',' . $longitude.'?units=si';
+    $request_url = self::API_ENDPOINT  . $this->api_key . '/' . $latitude . ',' . $longitude.'?units=auto';
     
     $content = file_get_contents($request_url);
     
@@ -169,6 +169,17 @@ class ForecastIOConditions{
   function getSummary() {
     
     return $this->raw_data->summary;
+    
+  }
+
+  /**
+   * Get the icon of the conditions
+   * 
+   * @return String
+   */
+  function getIcon() {
+    
+    return $this->raw_data->icon;
     
   }
   
