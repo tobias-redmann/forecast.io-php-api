@@ -306,31 +306,7 @@ class ForecastIOConditions{
     
   }
   
-  /**
-   * get the min temperature
-   * 
-   * only available for week forecast
-   * 
-   * @return type
-   */
-  function getMinTemperature() {
-    
-    return $this->raw_data->temperatureMin;
-    
-  }
-  
-  /**
-   * get max temperature
-   * 
-   * only available for week forecast
-   * 
-   * @return type
-   */
-  function getMaxTemperature() {
-    
-    return $this->raw_data->temperatureMax;
-    
-  }
+
   
   /**
    * get sunrise time
