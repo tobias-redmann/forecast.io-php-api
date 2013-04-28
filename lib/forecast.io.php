@@ -22,9 +22,14 @@ class ForecastIO{
   }
   
   
-  private function requestData($latitude, $longitude) {
+  private function requestData($latitude, $longitude, $timestamp = false, $exclusions = false) {
     
-    $request_url = self::API_ENDPOINT  . $this->api_key . '/' . $latitude . ',' . $longitude.'?units=auto';
+    $request_url = self::API_ENDPOINT .
+        $this->api_key . '/' .
+        $latitude . ',' . $longitude .
+        ( $timestamp ? ',' . $timestamp : '' ) .
+        '?units=auto' .
+        ( $exclusions ? '&exclude=' . $exclusions : '' );
     
     $content = file_get_contents($request_url);
     
@@ -64,6 +69,32 @@ class ForecastIO{
   
   }
   
+  /**
+   * Will return historical conditions for day of given timestamp
+   *
+   * @param float $latitude
+   * @param float $longitude
+   * @param int $timestamp
+   * @return \ForecastIOConditions|boolean
+   */
+  function getHistoricalConditions($latitude, $longitude, $timestamp) {
+
+    $exclusions = 'currently,minutely,hourly,alerts,flags';
+
+    $data = $this->requestData($latitude, $longitude, $timestamp, $exclusions);
+
+    if ($data !== false) {
+
+      return new ForecastIOConditions($data->daily->data[0]);
+
+    } else {
+
+      return false;
+
+    }
+
+  }
+
   /**
    * Will return conditions on hourly basis for today
    * 

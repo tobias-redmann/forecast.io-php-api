@@ -15,7 +15,6 @@ $forecast = new ForecastIO($api_key);
  */
 $condition = $forecast->getCurrentConditions($latitude, $longitude);
 
-// echo temperature
 echo $condition->getTemperature();
 
 
@@ -40,5 +39,13 @@ foreach($conditions_week as $conditions) {
   echo $conditions->getTime('Y.m.d') . ': ' . $conditions->getMaxTemperature();
   
 }
+
+/*
+ * GET HISTORICAL CONDITIONS
+ */
+$condition = $forecast->getHistoricalConditions($latitude, $longitude, strtotime('2010-10-10T14:00:00-0700'));
+// strtotime('2010-10-10T14:00:00-0700') gives timestamp for Pacfic Time... DST shouldn't matter since should be same day
+
+echo $condition->getMaxTemperature();
 
 ?>
