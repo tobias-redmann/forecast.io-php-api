@@ -33,7 +33,7 @@ class ForecastIO{
     
     $content = file_get_contents($request_url);
     
-    if ($content != '' && isset($content)) {
+    if (!empty($content)) {
       
       return json_decode($content);
        
