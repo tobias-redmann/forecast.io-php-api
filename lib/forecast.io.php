@@ -372,9 +372,17 @@ class ForecastIOConditions{
    * 
    * @return type
    */
-  function getSunrise() {
-    
-    return $this->raw_data->sunriseTime;
+  function getSunrise($format=null) {
+
+    if (!isset($format)) {
+      
+      return $this->raw_data->sunriseTime;
+      
+    } else {
+      
+      return date($format, $this->raw_data->sunriseTime);
+      
+    }
     
   }
   
@@ -385,9 +393,17 @@ class ForecastIOConditions{
    * 
    * @return type
    */
-  function getSunset() {
+  function getSunset($format=null) {
     
-    return $this->raw_data->sunsetTime;
+    if (!isset($format)) {
+      
+      return $this->raw_data->sunsetTime;
+      
+    } else {
+      
+      return date($format, $this->raw_data->sunsetTime);
+      
+    }
     
   }
   
