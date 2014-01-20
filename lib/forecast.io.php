@@ -219,6 +219,19 @@ class ForecastIOConditions{
   }
   
   /**
+   * get apparent temperature (heat index/wind chill)
+   * 
+   * only available for current conditions
+   * 
+   * @return type
+   */
+  function getApparentTemperature() {
+    
+    return $this->raw_data->apparentTemperature;
+    
+  }
+  
+  /**
    * Get the summary of the conditions
    * 
    * @return String
@@ -268,6 +281,19 @@ class ForecastIOConditions{
   function getPressure() {
     
     return $this->raw_data->pressure;
+    
+  }
+  
+  /**
+   * Get the dew point
+   * 
+   * Available in the current conditions
+   * 
+   * @return String
+   */
+  function getDewPoint() {
+    
+    return $this->raw_data->dewPoint;
     
   }
   
@@ -346,9 +372,17 @@ class ForecastIOConditions{
    * 
    * @return type
    */
-  function getSunrise() {
-    
-    return $this->raw_data->sunriseTime;
+  function getSunrise($format=null) {
+
+    if (!isset($format)) {
+      
+      return $this->raw_data->sunriseTime;
+      
+    } else {
+      
+      return date($format, $this->raw_data->sunriseTime);
+      
+    }
     
   }
   
@@ -359,9 +393,17 @@ class ForecastIOConditions{
    * 
    * @return type
    */
-  function getSunset() {
+  function getSunset($format=null) {
     
-    return $this->raw_data->sunsetTime;
+    if (!isset($format)) {
+      
+      return $this->raw_data->sunsetTime;
+      
+    } else {
+      
+      return date($format, $this->raw_data->sunsetTime);
+      
+    }
     
   }
   
