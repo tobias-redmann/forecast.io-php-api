@@ -22,16 +22,26 @@ class ForecastIO{
   }
   
   
-  private function requestData($latitude, $longitude, $timestamp = false, $exclusions = false) {
+  private function requestData($latitude, $longitude, $units, $timestamp = false, $exclusions = false) {
     
-    $request_url = self::API_ENDPOINT .
+    $validUnits = array('auto', 'us', 'si', 'ca', 'uk');
+
+    if (in_array($units, $validUnits)) {
+
+      $request_url = self::API_ENDPOINT .
         $this->api_key . '/' .
         $latitude . ',' . $longitude .
-        ( $timestamp ? ',' . $timestamp : '' ) .
-        '?units=auto' .
+        '?units=' . $units .
+        ( $timestamp ? ',' . $timestamp : '' ) . 
         ( $exclusions ? '&exclude=' . $exclusions : '' );
-    
-    $content = file_get_contents($request_url);
+
+      $content = file_get_contents($request_url);
+
+    } else {
+
+      return false;
+
+    }
     
     if (!empty($content)) {
       
@@ -53,9 +63,9 @@ class ForecastIO{
    * @param float $longitude
    * @return \ForecastIOConditions|boolean
    */
-  function getCurrentConditions($latitude, $longitude) {
+  function getCurrentConditions($latitude, $longitude, $units = 'auto') {
     
-    $data = $this->requestData($latitude, $longitude);
+    $data = $this->requestData($latitude, $longitude, $units);
       
     if ($data !== false) {
       
