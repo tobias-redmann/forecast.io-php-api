@@ -87,11 +87,11 @@ class ForecastIO{
    * @param int $timestamp
    * @return \ForecastIOConditions|boolean
    */
-  function getHistoricalConditions($latitude, $longitude, $timestamp) {
+  function getHistoricalConditions($latitude, $longitude, $units = 'auto', $timestamp) {
 
     $exclusions = 'currently,minutely,hourly,alerts,flags';
 
-    $data = $this->requestData($latitude, $longitude, $timestamp, $exclusions);
+    $data = $this->requestData($latitude, $longitude, $units $timestamp, $exclusions);
 
     if ($data !== false) {
 
@@ -112,9 +112,9 @@ class ForecastIO{
    * @param type $longitude
    * @return \ForecastIOConditions|boolean
    */
-  function getForecastToday($latitude, $longitude) {
+  function getForecastToday($latitude, $longitude, $units = 'auto') {
     
-    $data = $this->requestData($latitude, $longitude);
+    $data = $this->requestData($latitude, $longitude, $units);
     
     if ($data !== false) {
       
@@ -150,9 +150,9 @@ class ForecastIO{
    * @param float $longitude
    * @return \ForecastIOConditions|boolean
    */
-  function getForecastWeek($latitude, $longitude) {
+  function getForecastWeek($latitude, $longitude, $units = 'auto') {
     
-    $data = $this->requestData($latitude, $longitude);
+    $data = $this->requestData($latitude, $longitude, $units);
     
     if ($data !== false) {
       
