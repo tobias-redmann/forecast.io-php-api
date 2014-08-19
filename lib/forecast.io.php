@@ -31,8 +31,8 @@ class ForecastIO{
       $request_url = self::API_ENDPOINT .
         $this->api_key . '/' .
         $latitude . ',' . $longitude .
-        '?units=' . $units .
         ( $timestamp ? ',' . $timestamp : '' ) . 
+        '?units=' . $units .
         ( $exclusions ? '&exclude=' . $exclusions : '' );
 
       $content = file_get_contents($request_url);
@@ -91,7 +91,7 @@ class ForecastIO{
 
     $exclusions = 'currently,minutely,hourly,alerts,flags';
 
-    $data = $this->requestData($latitude, $longitude, $units $timestamp, $exclusions);
+    $data = $this->requestData($latitude, $longitude, $units, $timestamp, $exclusions);
 
     if ($data !== false) {
 
