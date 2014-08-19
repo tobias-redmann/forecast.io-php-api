@@ -91,7 +91,7 @@ class ForecastIO{
 
     $exclusions = 'currently,minutely,hourly,alerts,flags';
 
-    $data = $this->requestData($latitude, $longitude, $units $timestamp, $exclusions);
+    $data = $this->requestData($latitude, $longitude, $units, $timestamp, $exclusions);
 
     if ($data !== false) {
 
