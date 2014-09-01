@@ -6,7 +6,7 @@ $api_key = '<your_api_key>';
 $latitude = '52.4308';
 $longitude = '13.2588';
 $units = 'si';  // Can be set to 'us', 'si', 'ca', 'uk' or 'auto' (see forecast.io API); default is auto
-$lang = 'de';
+$lang = ''; // Can be set to 'en', 'de', 'pl', 'es', 'fr', 'it', 'tet' or 'x-pig-latin' (see forecast.io API); default is 'en'
 
 $forecast = new ForecastIO($api_key);
 
@@ -14,7 +14,7 @@ $forecast = new ForecastIO($api_key);
 /*
  * GET CURRENT CONDITIONS
  */
-$condition = $forecast->getCurrentConditions($latitude, $longitude, $units);
+$condition = $forecast->getCurrentConditions($latitude, $longitude, $units, $lang);
 
 echo $condition->getTemperature();
 
@@ -22,7 +22,7 @@ echo $condition->getTemperature();
 /*
  * GET HOURLY CONDITIONS FOR TODAY
  */
-$conditions_today = $forecast->getForecastToday($latitude, $longitude, $units);
+$conditions_today = $forecast->getForecastToday($latitude, $longitude, $units, $lang);
 
 foreach($conditions_today as $cond) {
   
