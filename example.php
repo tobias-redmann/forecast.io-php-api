@@ -6,6 +6,7 @@ $api_key = '<your_api_key>';
 $latitude = '52.4308';
 $longitude = '13.2588';
 $units = 'si';  // Can be set to 'us', 'si', 'ca', 'uk' or 'auto' (see forecast.io API); default is auto
+$lang = 'de';
 
 $forecast = new ForecastIO($api_key);
 
