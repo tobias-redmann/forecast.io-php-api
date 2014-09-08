@@ -32,8 +32,20 @@ class ForecastIO{
         '?units=' . $units . '&lang=' . $language .
         ( $timestamp ? ',' . $timestamp : '' ) .
         ( $exclusions ? '&exclude=' . $exclusions : '' );
-
-      $content = file_get_contents($request_url);
+      
+      /**
+        * Use Buffer to cache API-requests if initialized
+        * (if not, just get the latest data)
+        * 
+        * More info: http://git.io/FoO2Qw
+        */
+      
+      if(class_exists('Buffer')) {
+        $cache = new Buffer();
+        $content = $cache->data($request_url);
+      } else {
+        $content = file_get_contents($request_url);
+      }
 
     } else {
 
