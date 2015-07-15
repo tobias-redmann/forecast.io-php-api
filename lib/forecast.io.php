@@ -230,8 +230,46 @@ class ForecastIO
 
     }
 
+    /**
+     * Returns hourly forcasts for given (future) date
+     *
+     * @param type $latitude
+     * @param type $longitude
+     * @param int $timestamp
+     * @return \ForecastIOConditions|boolean
+     */
+    public function getHourlyForDay($latitude, $longitude,$timestamp)
+    {
+
+        $data = $this->requestData($latitude, $longitude,$timestamp);
+
+        if ($data !== false) {
+
+            $conditions = array();
+
+            foreach ($data->hourly->data as $raw_data) {
+
+                if($raw_data->time >= date('U')){
+                  $conditions[] = new ForecastIOConditions($raw_data);
+                }
+
+                
+            }
+
+            return $conditions;
+
+        } else {
+
+            return false;
+
+        }
+
+    }
+
 
 }
+
+ 
 
 
 /**
