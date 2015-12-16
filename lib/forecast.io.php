@@ -433,6 +433,35 @@ class ForecastIOConditions
         return $this->raw_data->precipProbability;
 
     }
+    /**
+     * Get the Max precipitation (in inches per hour)
+     * Only available in the daily datapoint
+     * @return type
+    */
+    function getPrecipitationIntensityMax()
+    {
+        return $this->raw_data->precipIntensityMax;
+    }
+
+    /**
+     * Get the time at which the max precipitation will occur
+     * Only available in the daily datapoint
+     * @return type
+    */
+    function getPrecipitationIntensityMaxTime()
+    {
+        return $this->raw_data->precipIntensityMaxTime;
+    }
+
+    /**
+     * Get precipitation amount in inches per hour
+     *
+     * @return type
+    */
+    function getPrecipitationIntensity()
+    {
+        return $this->raw_data->precipIntensity;
+    }
 
     /**
      * Get the cloud cover
